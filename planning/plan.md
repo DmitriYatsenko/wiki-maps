@@ -92,18 +92,39 @@ app.get('/login/:id', (req, res) => {
 ## Routes
 <!-- Once you know the resources that you'll have, write out the routes that you'll need to perform BREAD operations on those resources
 Remember RESTful conventions (they make it much easier) -->
-* /
-* /login/:id
-* /user_id
-* /user_id/maps
-* /user_id/favorites
+* / 
+  ** front page
+* /login/:id 
+  ** create cookies/sessions for user
+* /users/:id 
+  ** view user profile
+* /maps/:id 
+  ** view a map
+  ** edit/add/alter a map
+* /points/:id
+  ** edit/add/alter a point
+* user/:id/favorites 
+  ** view favourites
+  ** edit/add/alter favourites
+* /flags
+  ** view flagged maps
+  ** flag maps
+<!-- stretch -->
 
 <!-- full RESTful compliance -->
-* Browse - get /
-* Read - get
-* Edit - put/patch
-* Add - post
-* Delete - DELETE
+* Browse 
+  ** get: /, /users/:id
+* Read
+  ** get: /maps/:id 
+* Edit 
+  ** put: /maps/:id
+  ** patch: /flags
+  ** patch: /points/:id
+* Add 
+  ** post: user/:id/favorites
+* Delete 
+  ** DELETE: /maps/:id
+  ** DELETE: /points/:id 
 
 ## ERD
 <!-- The user stories provide you with nouns (eg. user, posts, favourites)
@@ -130,18 +151,67 @@ This is also a great opportunity to get input from all of the team members
 Design matters... however you are a developer, not a designer
 Get inspiration from websites you visit -->
 
-
-
+![]() 
+<!-- wireframe -->
 ## Delegations
-* HTML/SCSS
-* JS
-* Ajax
-* Routing (express)
+* HTML/SCSS/JQUERY/JS
+* Routing (express) 
+  ** GARY CUI
 * Database management
+
+### Git Workflow
+* GARY'S WORKFLOW
+  ** git branch feature/routes
+  ** git checkout feature/routes
+  ** git status
+  ** git pull
+  ** git add <FILES HERE>
+  ** git commit feature/routes
+  ** git push 
 
 <!-- make sure tables are in 1NF form at least -->
 ## Tables
-* Maps (id, user_id, description, count(points))
-* Points (id, map_id, description)
-* Users(id, user_name, count(maps), 
-* favorites (id, user_id, map_id)
+* DROP TABLE IF EXISTS users;
+* CREATE TABLE users (
+  id UUID,
+  authenticated BOOLEAN
+  );
+  DROP TABLE IF EXISTS maps;
+* CREATE TABLE maps (
+  id UUID PRIMARY KEY,
+  user_id UUID REFERENCES users(id),
+  title VARCHAR(15) NOT NULL,
+  private BOOLEAN,
+  flag BOOLEAN
+  );
+  DROP TABLE IF EXISTS flags;
+* CREATE TABLE flags (
+  id INTEGER PRIMARY KEY,
+  map_id  UUID REFERENCES maps(id)
+  );
+  DROP TABLE IF EXISTS points;
+* CREATE TABLE points (
+  id INTEGER PRIMARY KEY,
+  user_id UUID REFERENCES users(id),
+  map_id  UUID REFERENCES maps(id),
+  title VARCHAR(15) NOT NULL, 
+  description TEXT,
+  image TEXT
+  );
+  DROP TABLE IF EXISTS favourites;
+* CREATE TABLE favourites (
+  id INTEGER PRIMARY KEY,
+  user_id UUID REFERENCES users(id),
+  map_id  UUID REFERENCES maps(id)
+  );
+  DROP TABLE IF EXISTS admins;
+* CREATE TABLE admins (
+  id INTEGER PRIMARY KEY,
+  user_id UUID REFERENCES users(id),
+  flag_id INTEGER REFERENCES flags(id)
+  );
+    
+  
+  
+
+
