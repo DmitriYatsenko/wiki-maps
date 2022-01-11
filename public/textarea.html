@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea id="textarea">
+    </textarea>
+    <script>
+        // document.onload = function () {
+            console.log("Hi");
+            document.getElementById("textarea").addEventListener("keydown", (event) => {
+                console.log("Hello");
+            });
+            document.getElementById("textarea").addEventListener("keyup", (event) => {
+                console.log("Bye");
+            });
+            document.getElementById("textarea").addEventListener("keypress", (event) => {
+                console.log("11111");
+            });
+            document.getElementById("textarea").addEventListener("input", (event) => {
+                console.log("00000");
+            });
+        // }
+    </script>
+</body>
+
+</html>
