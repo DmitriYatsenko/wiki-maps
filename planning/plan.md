@@ -139,10 +139,11 @@ This concept helps streamline the development process and help keep the team on 
 For mid-terms, we want to focus on the MVD, the Minimum Viable Demo
 If you aren't going to demo it, don't build it
 ```
-<!-- level one  -->
+<!-- level one MVD -->
 * Get one map on the screen
 * Get one point on the screen
 * get one user profile
+
 
 ## Wireframes
 <!-- Draw out the structure of your web pages
@@ -160,6 +161,7 @@ Get inspiration from websites you visit -->
 * Database management
 
 ### Git Workflow
+Try to commit every ten lines but  if you can't try  to split commits based on  the file you were working on.
 * GARY'S WORKFLOW
   ** git branch feature/routes
   ** git checkout feature/routes
@@ -174,29 +176,33 @@ Get inspiration from websites you visit -->
 * DROP TABLE IF EXISTS users;
 * CREATE TABLE users (
   id UUID,
-  authenticated BOOLEAN
+  authenticated BOOLEAN,
+  name TEXT NOT NULL,
+  image TEXT
   );
   DROP TABLE IF EXISTS maps;
 * CREATE TABLE maps (
   id UUID PRIMARY KEY,
   user_id UUID REFERENCES users(id),
-  title VARCHAR(15) NOT NULL,
+  title TEXT NOT NULL,
   private BOOLEAN,
   flag BOOLEAN
   );
   DROP TABLE IF EXISTS flags;
 * CREATE TABLE flags (
   id INTEGER PRIMARY KEY,
-  map_id  UUID REFERENCES maps(id)
+  map_id UUID REFERENCES maps(id)
   );
   DROP TABLE IF EXISTS points;
 * CREATE TABLE points (
   id INTEGER PRIMARY KEY,
   user_id UUID REFERENCES users(id),
   map_id  UUID REFERENCES maps(id),
-  title VARCHAR(15) NOT NULL, 
+  title TEXT NOT NULL, 
   description TEXT,
   image TEXT
+  longitude TEXT
+  latitude TEXT 
   );
   DROP TABLE IF EXISTS favourites;
 * CREATE TABLE favourites (
