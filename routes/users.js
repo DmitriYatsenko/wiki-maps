@@ -36,14 +36,11 @@ module.exports = (db) => {
   });
 
 
-
-  router.get("/login", (req, res) => {
+  router.get("/users/:id ", (req, res) => {
     let userData = req.body;
     userHelper.getUserNameById(db, userData)
       .then((dbRes) => {
-        req.session.userID = dbRes[0].id;
         res.json(dbRes[0]);
-
       });
   });
 
