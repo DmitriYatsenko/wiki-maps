@@ -43,6 +43,29 @@ module.exports = (db) => {
         res.json(dbRes[0]);
       });
   });
+  //need test with data base
+  router.get('/:id/favourites', (req, res) => {
+    let userObj = {
+      id: req.session.user_id
+    };
+    userHelper.getUserFavouriteMaps(db, userObj.id).then(dbRes => res.json(dbRes));
+  });
+
+  //need test with data base
+  router.post('/:id/favourites', (req, res) => {
+    let dataObj = req.body;
+    userHelper.addUserFavouriteMap(db, dataObj).then((dbRes) => {
+      res.json(dbRes);
+    });
+  });
+
+  //need test with data base
+  router.patch('/:id/favourites', (req, res) => {
+    let dataObj = req.body;
+    userHelper.editUserFavouriteMap(db, dataObj).then((dbRes) => {
+      res.json(dbRes);
+    });
+  });
 
 
 

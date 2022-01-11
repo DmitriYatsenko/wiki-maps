@@ -96,6 +96,33 @@ const editMap = function(db, mapInfo) {
   return Promise.resolve(dbRes);
 
 };
+// need test function
+const getUserFavouriteMaps = function(db, userObj) {
+  const values = [userObj.id];
+  let queryString = `SELECT * FROM maps
+                       JOIN favourites ON maps.id = favourites.Map_id
+                       JOIN users ON users.id = maps.user_id
+                       WHERE users.id = $1;`;
+  return db.query(queryString, values).then(res => res.rows)
+    .catch(err => console.log(err));
+};
+
+//function need test
+const addUserFavouriteMap = function(db, favouriteInfo) {
+  let userValues = [favouriteInfo.Map_id, favouriteInfo.User_id];
+  let queryString = `INSERT INTO favourites (Map_id, User_id)
+                    VALUES ($1, $2) RETURNING *`;
+  return db.query(queryString, userValues).then(res => res.rows)
+    .catch(err => console.log(err));
+};
+
+//function need test
+const editUserFavouriteMap = function(db, favouriteInfo) {
+  let userValues = [favouriteInfo.Map_id, favouriteInfo.User_id];
+  let queryString = `UPDATE favourites SET Map_id = $1, User_id = $2 RETURNING *`;
+  return db.query(queryString, userValues).then(res => res.rows)
+    .catch(err => console.log(err));
+};
 
 
 
@@ -106,6 +133,9 @@ module.exports = {
   getUserProfileById,
   getPointsByMapId,
   addMap,
-  editMap
+  editMap,
+  getUserFavouriteMaps,
+  addUserFavouriteMap,
+  editUserFavouriteMap
 
 };

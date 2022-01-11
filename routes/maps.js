@@ -69,7 +69,7 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-
+  });
 
   router.post("/points/:id", (req, res) => {
     const mapId = req.params.id;
@@ -114,7 +114,6 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
 
 
   return router;
