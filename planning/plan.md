@@ -178,6 +178,7 @@ Try to commit every ten lines but  if you can't try  to split commits based on  
   id UUID,
   authenticated BOOLEAN,
   name TEXT NOT NULL,
+  description TEXT,
   image TEXT
   );
   DROP TABLE IF EXISTS maps;
@@ -191,7 +192,8 @@ Try to commit every ten lines but  if you can't try  to split commits based on  
   DROP TABLE IF EXISTS flags;
 * CREATE TABLE flags (
   id INTEGER PRIMARY KEY,
-  map_id UUID REFERENCES maps(id)
+  map_id UUID REFERENCES maps(id),
+  description TEXT
   );
   DROP TABLE IF EXISTS points;
 * CREATE TABLE points (
