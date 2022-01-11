@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+
+<body>
+    <%- include('partials/_header') %>
+    <form class="form-inline" action="/login" method="POST">
+        <div class="form-group mb-2">
+            <input class="form-control" type="email" name="email" placeholder="email"
+                style="width: 200px; margin-left:auto; margin-right: auto;">
+            <input class="form-control" type="password" name="password" placeholder="password"
+                style="width: 200px; margin-left:auto; margin-right: auto;">
+            <button type="submit" class="btn btn-primary"
+                style="width: 200px; margin-left:auto; margin-right: auto;">Login</button>
+        </div>
+    </form>
+</body>
+
+</html>
