@@ -77,7 +77,7 @@ const addMap = function(db, mapInfo) {
 const editMap = function(db, mapInfo) {
   // still need to test when db set up
 
-  // let mapValues = [mapInfo.name, mapInfo.latitude, mapInfo.longitude, mapInfo.map_id];
+  //let mapValues = [mapInfo.name, mapInfo.latitude, mapInfo.longitude, mapInfo.map_id];
   // let queryString = `UPDATE maps SET name = $1, latitude = $2, longitude = $3
   // WHERE map_id = $4;
   // VALUES ($1,$2,$3,$4) RETURNING *;`;
@@ -87,9 +87,9 @@ const editMap = function(db, mapInfo) {
   //   .catch(err => console.log(err));
   let dbRes = [
     {id: 3,
-      name: 'QUEBEC',
-      latitude: 50,
-      longitude: -90,
+      name: mapInfo.name,
+      latitude: mapInfo.latitude,
+      longitude: mapInfo.longitude,
       map_id:mapInfo.map_id
     }
   ];

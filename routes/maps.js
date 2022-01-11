@@ -13,9 +13,6 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     const mapId = req.params.id;
 
-
-
-
     mapsHelper.getPointsByMapId(db, mapId)
       .then(dbRes => {
         res.json({ dbRes });
