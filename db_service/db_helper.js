@@ -181,7 +181,7 @@ const deleteMap = function(db, mapId) {
 
 const deletePoint = function(db, pointId) {
   let pointValues = [pointId];
-  let queryString = `DELETE FROM points
+  let queryString = `DELETE FROM maps
     WHERE id = $1`;
   return (
     db
