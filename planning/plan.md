@@ -14,7 +14,7 @@ A web app that allows users to collaboratively create maps which list multiple "
 
 
 
-## User Stories*
+## User Stories
 <!-- A user story describes how users will interact with your application. They have the form: As a ___, I want to _, because ____.
 eg. As a user, I want to be able to save posts, because I want to review them later. ser stories can also be negated: As a __, I shouldn't be able to _, because ___.
 eg. As a user, I shouldn't be able to edit other users posts, because I don't own those posts. -->
@@ -113,9 +113,9 @@ Remember RESTful conventions (they make it much easier) -->
 
 <!-- full RESTful compliance -->
 * Browse 
-  ** get: /, /users/:id
+  ** get: /, /users/:id, login/:id
 * Read
-  ** get: /maps/:id 
+  ** get: /maps/:id, points/:id 
 * Edit 
   ** put: /maps/:id
   ** patch: /flags
@@ -129,7 +129,7 @@ Remember RESTful conventions (they make it much easier) -->
 ## ERD
 <!-- The user stories provide you with nouns (eg. user, posts, favourites)
 Use these nouns/entities to build out your database (ie. tables are the nouns from the stories) -->
-![Entity Relationship Diagram](/planning/WikiMapERD.png)
+![Entity Relationship Diagram](./docs/WikiMapERD.png)
 
 ## MVP vs MVD
 ```
@@ -139,10 +139,11 @@ This concept helps streamline the development process and help keep the team on 
 For mid-terms, we want to focus on the MVD, the Minimum Viable Demo
 If you aren't going to demo it, don't build it
 ```
-<!-- level one  -->
+<!-- level one MVD -->
 * Get one map on the screen
 * Get one point on the screen
 * get one user profile
+
 
 ## Wireframes
 <!-- Draw out the structure of your web pages
@@ -151,7 +152,7 @@ This is also a great opportunity to get input from all of the team members
 Design matters... however you are a developer, not a designer
 Get inspiration from websites you visit -->
 
-![]() 
+![Wire Frame Diagram](./docs/wireframe.png) 
 <!-- wireframe -->
 ## Delegations
 * HTML/SCSS/JQUERY/JS
@@ -160,6 +161,7 @@ Get inspiration from websites you visit -->
 * Database management
 
 ### Git Workflow
+Try to commit every ten lines but  if you can't try  to split commits based on  the file you were working on.
 * GARY'S WORKFLOW
   ** git branch feature/routes
   ** git checkout feature/routes
@@ -171,46 +173,53 @@ Get inspiration from websites you visit -->
 
 <!-- make sure tables are in 1NF form at least -->
 ## Tables
-* DROP TABLE IF EXISTS users;
-* CREATE TABLE users (
+```sql
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
   id UUID,
-  authenticated BOOLEAN
+  authenticated BOOLEAN,
+  name TEXT NOT NULL,
+  description TEXT,
+  image TEXT
   );
   DROP TABLE IF EXISTS maps;
-* CREATE TABLE maps (
+CREATE TABLE maps (
   id UUID PRIMARY KEY,
   user_id UUID REFERENCES users(id),
-  title VARCHAR(15) NOT NULL,
+  title TEXT NOT NULL,
   private BOOLEAN,
   flag BOOLEAN
   );
   DROP TABLE IF EXISTS flags;
-* CREATE TABLE flags (
+CREATE TABLE flags (
   id INTEGER PRIMARY KEY,
-  map_id  UUID REFERENCES maps(id)
+  map_id UUID REFERENCES maps(id),
+  description TEXT
   );
   DROP TABLE IF EXISTS points;
-* CREATE TABLE points (
+CREATE TABLE points (
   id INTEGER PRIMARY KEY,
   user_id UUID REFERENCES users(id),
   map_id  UUID REFERENCES maps(id),
-  title VARCHAR(15) NOT NULL, 
+  title TEXT NOT NULL, 
   description TEXT,
   image TEXT
+  longitude FLOAT,
+  latitude FLOAT 
   );
   DROP TABLE IF EXISTS favourites;
-* CREATE TABLE favourites (
+CREATE TABLE favourites (
   id INTEGER PRIMARY KEY,
   user_id UUID REFERENCES users(id),
   map_id  UUID REFERENCES maps(id)
   );
   DROP TABLE IF EXISTS admins;
-* CREATE TABLE admins (
+CREATE TABLE admins (
   id INTEGER PRIMARY KEY,
   user_id UUID REFERENCES users(id),
   flag_id INTEGER REFERENCES flags(id)
   );
-    
+```    
   
   
 
