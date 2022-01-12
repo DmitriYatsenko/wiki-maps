@@ -77,7 +77,7 @@ const addMap = function(db, mapInfo) {
 const editMap = function(db, mapInfo) {
   // still need to test when db set up
 
-  // let mapValues = [mapInfo.name, mapInfo.latitude, mapInfo.longitude, mapInfo.map_id];
+  //let mapValues = [mapInfo.name, mapInfo.latitude, mapInfo.longitude, mapInfo.map_id];
   // let queryString = `UPDATE maps SET name = $1, latitude = $2, longitude = $3
   // WHERE map_id = $4;
   // VALUES ($1,$2,$3,$4) RETURNING *;`;
@@ -87,14 +87,41 @@ const editMap = function(db, mapInfo) {
   //   .catch(err => console.log(err));
   let dbRes = [
     {id: 3,
-      name: 'QUEBEC',
-      latitude: 50,
-      longitude: -90,
+      name: mapInfo.name,
+      latitude: mapInfo.latitude,
+      longitude: mapInfo.longitude,
       map_id:mapInfo.map_id
     }
   ];
   return Promise.resolve(dbRes);
 
+};
+// need test function
+const getUserFavouriteMaps = function(db, userObj) {
+  const values = [userObj.id];
+  let queryString = `SELECT * FROM maps
+                       JOIN favourites ON maps.id = favourites.Map_id
+                       JOIN users ON users.id = maps.user_id
+                       WHERE users.id = $1;`;
+  return db.query(queryString, values).then(res => res.rows)
+    .catch(err => console.log(err));
+};
+
+//function need test
+const addUserFavouriteMap = function(db, favouriteInfo) {
+  let userValues = [favouriteInfo.Map_id, favouriteInfo.User_id];
+  let queryString = `INSERT INTO favourites (Map_id, User_id)
+                    VALUES ($1, $2) RETURNING *`;
+  return db.query(queryString, userValues).then(res => res.rows)
+    .catch(err => console.log(err));
+};
+
+//function need test
+const editUserFavouriteMap = function(db, favouriteInfo) {
+  let userValues = [favouriteInfo.Map_id, favouriteInfo.User_id];
+  let queryString = `UPDATE favourites SET Map_id = $1, User_id = $2 RETURNING *`;
+  return db.query(queryString, userValues).then(res => res.rows)
+    .catch(err => console.log(err));
 };
 
 
@@ -106,6 +133,9 @@ module.exports = {
   getUserProfileById,
   getPointsByMapId,
   addMap,
-  editMap
+  editMap,
+  getUserFavouriteMaps,
+  addUserFavouriteMap,
+  editUserFavouriteMap
 
 };

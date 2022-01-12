@@ -13,9 +13,6 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     const mapId = req.params.id;
 
-
-
-
     mapsHelper.getPointsByMapId(db, mapId)
       .then(dbRes => {
         res.json({ dbRes });
@@ -74,6 +71,49 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/points/:id", (req, res) => {
+    const mapId = req.params.id;
+    //get name, latitude , longtitude from front end
+    const name = req.body.name;
+    const latitude = req.body.latitude;
+    const longtitude = req.body.longtitude;
+    const mapInfo = {
+      name:name,
+      latitude:latitude,
+      longtitude:longtitude
+    };
+    mapsHelper.addPoints(db, mapInfo)
+      .then(dbRes => {
+        res.json({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  router.patch("/points/:id", (req, res) => {
+    const mapId = req.params.id;
+    //get name, latitude , longtitude from front end
+    const name = req.body.name;
+    const latitude = req.body.latitude;
+    const longtitude = req.body.longtitude;
+    const mapInfo = {
+      name:name,
+      latitude:latitude,
+      longtitude:longtitude
+    };
+    mapsHelper.editPoints(db, mapInfo)
+      .then(dbRes => {
+        res.json({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
 
   return router;
