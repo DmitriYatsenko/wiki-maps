@@ -2,13 +2,14 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 8088;
+const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieSession = require('cookie-session');
+const path = require('path');
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -36,10 +37,11 @@ app.use(
     source: __dirname + "/styles",
     destination: __dirname + "/public/styles",
     isSass: false, // false => scss, true => sass
-  })
+  })//,
+  // express.static("public")
 );
 
-app.use(express.static("public"));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own

@@ -6,10 +6,11 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+
+  <link rel="stylesheet" href="/public/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/public/styles/layout.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="/public/styles/header.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/public/styles/nav.css" type="text/css" /> -->
   <!-- Map -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -23,8 +24,8 @@
 </head>
 
 <body>
-  <header class="title">Wiki Maps 0</header>
-  <div id="map" style="width: 600px; height: 400px; position: relative; outline: none;"
+  <h1 class="title">Wiki Maps 3</h1>
+  <div id="map" style="width: 1200px; height: 800px; position: relative; outline: none;"
     class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
     tabindex="0">
     <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
@@ -67,39 +68,6 @@
       </div>
     </div>
   </div>
-
-  <main class="container">
-    <section class="map">
-
-      <div>
-        <Map center={this.state.center} zoom={this.state.zoom}>
-          <TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-            <Marker position={this.state.center}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          </Map>
-        </div>
-      </section>
-
-      <section class="map">
-
-        <div>
-          <Map center={this.state.center} zoom={this.state.zoom}>
-            <TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-              <Marker position={this.state.center}>
-                <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-              </Marker>
-            </Map>
-    </div>
-
-  </section>
-
-</main>
 </body>
+
 </html>
