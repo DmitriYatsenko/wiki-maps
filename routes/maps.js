@@ -73,16 +73,16 @@ module.exports = (db) => {
 
   router.post("/points/:id", (req, res) => {
     const mapId = req.params.id;
-    //get name, latitude , longtitude from front end
+    //need to update after database correct
     const name = req.body.name;
     const latitude = req.body.latitude;
     const longtitude = req.body.longtitude;
-    const mapInfo = {
+    const pointInfo = {
       name:name,
       latitude:latitude,
       longtitude:longtitude
     };
-    mapsHelper.addPoints(db, mapInfo)
+    mapsHelper.addPoints(db, pointInfo)
       .then(dbRes => {
         res.json({ dbRes });
       })
@@ -95,16 +95,24 @@ module.exports = (db) => {
 
   router.patch("/points/:id", (req, res) => {
     const mapId = req.params.id;
-    //get name, latitude , longtitude from front end
-    const name = req.body.name;
+
+    // still need fix according our database set up
+    const user_id = req.body.user_id;
+    const title = req.body.title;
+    const image = req.body.image;
     const latitude = req.body.latitude;
-    const longtitude = req.body.longtitude;
-    const mapInfo = {
-      name:name,
+    const longitude = req.body.longtitude;
+    const description = req.body.description;
+
+    const pointValues = {
+      user_id:user_id,
+      title:title,
+      image:image,
       latitude:latitude,
-      longtitude:longtitude
+      longitude:longitude,
+      description:description,
     };
-    mapsHelper.editPoints(db, mapInfo)
+    mapsHelper.editPoints(db, pointValues)
       .then(dbRes => {
         res.json({ dbRes });
       })
