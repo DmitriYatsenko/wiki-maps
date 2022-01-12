@@ -73,7 +73,7 @@ module.exports = (db) => {
 
   router.delete("/maps/:id", (req, res) => {
     const mapId = req.params.id;
-    mapsHelper.deleteMap(db, mapId).then(() =>  res.send('Delete Map by id success,bro!!'));
+    mapsHelper.deleteMap(db, mapId).then(() =>  res.send('Delete Map  id success,bro!!'));
   });
 
   return router;
