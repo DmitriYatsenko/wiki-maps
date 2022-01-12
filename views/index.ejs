@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Wiki Maps</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -14,7 +14,42 @@
 </head>
 
 <body>
-  <h1>Have fun! 🥔</h1>
+  <h1>Wiki Maps</h1>
 </body>
+
+<main class="container">
+  <section class="map">
+
+    <div>
+      <Map center={this.state.center} zoom={this.state.zoom}>
+        <TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+        <Marker position={this.state.center}>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+      </Map>
+    </div>
+
+  </section>
+
+  <section class="map">
+
+    <div>
+      <Map center={this.state.center} zoom={this.state.zoom}>
+        <TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+        <Marker position={this.state.center}>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+      </Map>
+    </div>
+
+  </section>
+
+</main>
 
 </html>
