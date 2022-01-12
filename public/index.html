@@ -2,75 +2,71 @@
 <html lang="en">
 
 <head>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
-  <title>Tweeter - Home Page</title>
+  <title>Wiki Maps</title>
 
-  <!-- External CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-    type="text/css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- App CSS -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <!-- Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
 
-  <!-- External JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
-    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- <script src="dist/timeago.js" type="text/javascript"></script> -->
-
-  <!-- App JS -->
-  <script type="text/javascript" src="/scripts/client.js"></script>
-  <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
-  <!-- Top nav bar (fixed) -->
-  <nav class="nav69">
-    <div class="navbar">
-      <div class="title">
-        <span>Tweeter</span>
-      </div>
-      <div class="text">
-        <span>Write a new tweet</span>
-        <i class="fas-fa-angle-double-down"></i>
-      </div>
-    </div>
-  </nav>
-
-  <header class="header69">
-    <div class="f">
-      <img src="/images/profile-hex.png">
-    </div>
-    <br>
-    <div>
-      <h2>Dmitri Yatsenko</h2>
-    </div>
-  </header>
-  <!-- Page-specific (main) content here -->
-  <main class="container">
-    <section class="new-tweet">
-      <h3>Compose Tweet</h3>
-      <form class="tweets" action="/tweets/" method="post" id="new-tweet-form">
-        <textarea class="fudge" name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
-        <div class="button">
-          <button type="submit">Tweet</button>
-          <output id="counter" name="counter" class="counter" for="tweet-text">140</output>
+  <header class="title">Wiki Maps 0</header>
+  <div id="map" style="width: 1200px; height: 800px; position: relative; outline: none;"
+    class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+    tabindex="0">
+    <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
+      <div class="leaflet-pane leaflet-tile-pane">
+        <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
+          <div class="leaflet-tile-container leaflet-zoom-animated"
+            style="z-index: 17; transform: translate3d(225px, 150px, 0px) scale(0.5);"></div>
+          <div class="leaflet-tile-container leaflet-zoom-animated"
+            style="z-index: 18; transform: translate3d(150px, 100px, 0px) scale(1);"><img alt="" role="presentation"
+              src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/10/511/340?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 512px; height: 512px; transform: translate3d(-231px, -165px, 0px); opacity: 1;"><img alt=""
+              role="presentation"
+              src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/10/512/340?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw"
+              class="leaflet-tile leaflet-tile-loaded"
+              style="width: 512px; height: 512px; transform: translate3d(281px, -165px, 0px); opacity: 1;"></div>
         </div>
-        <div class="error-text"></div>
-      </form>
-    </section>
-    <div id="tweets-container"></div>
-  </main>
+      </div>
+      <div class="leaflet-pane leaflet-shadow-pane"></div>
+      <div class="leaflet-pane leaflet-overlay-pane"></div>
+      <div class="leaflet-pane leaflet-marker-pane"></div>
+      <div class="leaflet-pane leaflet-tooltip-pane"></div>
+      <div class="leaflet-pane leaflet-popup-pane"></div>
+      <div class="leaflet-proxy leaflet-zoom-animated"
+        style="transform: translate3d(262013px, 174345px, 0px) scale(1024);"></div>
+    </div>
+    <div class="leaflet-control-container">
+      <div class="leaflet-top leaflet-left">
+        <div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#"
+            title="Zoom in" role="button" aria-label="Zoom in">+</a><a class="leaflet-control-zoom-out" href="#"
+            title="Zoom out" role="button" aria-label="Zoom out">−</a></div>
+      </div>
+      <div class="leaflet-top leaflet-right"></div>
+      <div class="leaflet-bottom leaflet-left"></div>
+      <div class="leaflet-bottom leaflet-right">
+        <div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com"
+            title="A JS library for interactive maps">Leaflet</a> | Map data © <a
+            href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a
+            href="https://www.mapbox.com/">Mapbox</a></div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
