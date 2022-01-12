@@ -165,9 +165,23 @@ const editPoints = function(db, pointInfo) {
     .catch(err => console.log(err));
 };
 
-const deleteMap = function(db, pointId) {
-  let pointValues = [pointId];
+const deleteMap = function(db, mapId) {
+  let mapValues = [mapId];
   let queryString = `DELETE FROM maps
+    WHERE id = $1`;
+  return (
+    db
+      .query(queryString, mapValues)
+      .then(res => {
+        return res.rows;
+      })
+      .catch(err => console.log(err))
+  );
+};
+
+const deletePoint = function(db, pointId) {
+  let pointValues = [pointId];
+  let queryString = `DELETE FROM points
     WHERE id = $1`;
   return (
     db
@@ -192,5 +206,6 @@ module.exports = {
   editUserFavouriteMap,
   addPoints,
   editPoints,
-  deleteMap
+  deleteMap,
+  deletePoint
 };

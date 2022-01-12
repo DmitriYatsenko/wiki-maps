@@ -63,5 +63,10 @@ module.exports = (db) => {
       });
   });
 
+
+  router.delete("/points/:id", (req, res) => {
+    const pointId = req.params.id;
+    pointsHelper.deletePoint(db, pointId).then(() =>  res.send('Delete Point by id success,bro!!'));
+  });
   return router;
 };
