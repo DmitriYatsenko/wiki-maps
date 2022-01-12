@@ -9,15 +9,26 @@
 </head>
 
 <body>
-    <%- include('partials/_header') %>
-    <div class="card text-center">
-        <div class="card-header"></div>
-        <div class="card-body">
-            <h5 class="card-title">TinyURL for: <%= longURL %></h5>
-            <p class="card-text">Short URL: <a href="/u/<%= shortURL %>"><%= shortURL %></a></p>
-        </div>
-        <div class="card-footer text-muted"></div>
-    </div>
+    <section class="header"></section>
+    <section class="body">
+        <container class="maps">
+          <%- for (map in maps) { %>
+            <h5 class="card-title">
+                <%= map.title %>
+            </h5>
+              <Map center={this.state.center} zoom={this.state.zoom}>
+                <TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+                  <Marker position={this.state.center}>
+                    <Popup>
+                      A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup>
+                  </Marker>
+                </Map>
+            <% } %>
+        </container>
+    </section>
+    <section class="footer"></section>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
