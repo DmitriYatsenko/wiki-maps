@@ -124,6 +124,46 @@ const editUserFavouriteMap = function(db, favouriteInfo) {
     .catch(err => console.log(err));
 };
 
+//function need test
+const addPoints = function(db, pointInfo) {
+  let pointValues = [
+    pointInfo.user_id,
+    pointInfo.title,
+    pointInfo.image,
+    pointInfo.latitude,
+    pointInfo.longitude,
+    pointInfo.description,
+  ];
+  //querry need to write when database set up
+  // bellow querry need to update later
+  let queryString = `INSERT INTO points (user_id, map_id, title,description,image, latitude, longitude)
+                       VALUES($1, $2, $3, $4, $5, $6) RETURNING *`;
+  return db
+    .query(queryString, pointValues)
+    .then(res => res.rows[0])
+    .catch(err => console.log(err));
+};
+
+
+//function need test
+const editPoints = function(db, pointInfo) {
+  let pointValues = [
+    pointInfo.user_id,
+    pointInfo.title,
+    pointInfo.image,
+    pointInfo.latitude,
+    pointInfo.longitude,
+    pointInfo.description,
+  ];
+  //querry need to write when database set up
+  // bellow querry need to update later
+  let queryString = `UPDATE points SET user_id = $1, map_id = $2, title = $3, description = $4, image = $5, latitude = $6 ,longitude = $7
+                       VALUES($1, $2, $3, $4, $5, $6) RETURNING *`;
+  return db
+    .query(queryString, pointValues)
+    .then(res => res.rows[0])
+    .catch(err => console.log(err));
+};
 
 
 
@@ -136,6 +176,7 @@ module.exports = {
   editMap,
   getUserFavouriteMaps,
   addUserFavouriteMap,
-  editUserFavouriteMap
-
+  editUserFavouriteMap,
+  addPoints,
+  editPoints
 };
