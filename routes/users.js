@@ -34,7 +34,7 @@ module.exports = (db) => {
     res.redirect('/');
   });
 
-  router.get("/users/:id", (req, res) => {
+  router.get("/:id", (req, res) => {
     let userId = req.params.id;
     userHelper.getUserNameById(db, userId)
       .then((dbRes) => {
