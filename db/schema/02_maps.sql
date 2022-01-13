@@ -5,3 +5,4 @@ CREATE TABLE maps (
   title TEXT,
   private BOOLEAN
   );
+
