@@ -9,19 +9,27 @@ const express = require('express');
 const router = express.Router();
 const pointsHelper = require('../db_service/db_helper');
 
+
 module.exports = (db) => {
 
-  router.post("/points/:id", (req, res) => {
-    const mapId = req.params.id;
-    //need to update after database correct
+  router.post("/points", (req, res) => {
     const name = req.body.name;
+
+    const title = req.body.title;
+    const image = req.body.image;
+    const description = req.body.description;
     const latitude = req.body.latitude;
     const longtitude = req.body.longtitude;
+
     const pointInfo = {
       name:name,
-      latitude:latitude,
-      longtitude:longtitude
+      title: title,
+      image: image,
+      description: description,
+      latitude: latitude,
+      longtitude: longtitude
     };
+    
     pointsHelper.addPoints(db, pointInfo)
       .then(dbRes => {
         res.json({ dbRes });
@@ -34,7 +42,7 @@ module.exports = (db) => {
   });
 
   router.patch("/points/:id", (req, res) => {
-    const mapId = req.params.id;
+    const pointId = req.params.id;
 
     // still need fix according our database set up
     const user_id = req.body.user_id;

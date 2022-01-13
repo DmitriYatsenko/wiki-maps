@@ -26,76 +26,42 @@ const getAllUsers = function(db) {
 };
 
 
-const getPointsByMapId = function(db, mapID) {
-  // still need to test when db set up
-
-  // let mapValues = [mapID];
-  // let queryString = `SELECT * FROM points
-  //                       WHERE map_id = $1`;
-  // return (
-  //   db
-  //     .query(queryString, mapValues)
-  //     .then(res => {
-  //       return res.rows;
-  //     })
-  //     .catch(err => console.log(err))
-  // );
-
-  //dummy data for now
-  let dbRes = [
-    {id: 1,
-      name: 'toronto',
-      latitude: 45.5017,
-      longitude: -73.5673,
-      map_id:mapID
-    }
-  ];
-  return Promise.resolve(dbRes);
+const getMapByMapId = function(db, mapID) {
+  let mapValues = [mapID];
+  let queryString = `SELECT * FROM maps
+                        WHERE maps.id = $1`;
+  return (
+    db
+      .query(queryString, mapValues)
+      .then(res => {
+        return res.rows;
+      })
+      .catch(err => console.log(err))
+  );
 };
 
 const addMap = function(db, mapInfo) {
-  // still need to test when db set up
-
-  // let mapValues = [mapInfo.name, mapInfo.latitude, mapInfo.longitude];
-  // let queryString = `INSERT INTO maps (name, latitude, longitude)
-  // VALUES ($1,$2,$3) RETURNING *;`;
-  // return db
-  //   .query(queryString, mapValues)
-  //   .then(res => res.rows[0])
-  //   .catch(err => console.log(err));
-  let dbRes = [
-    {id: 2,
-      name: 'Markham',
-      latitude: 46,
-      longitude: -60,
-    }
-  ];
-  return Promise.resolve(dbRes);
+  let mapValues = [mapInfo.userId, mapInfo.title];
+  let queryString = `INSERT INTO maps (user_id, title)
+  VALUES ($1,$2) RETURNING *;`;
+  return db
+    .query(queryString, mapValues)
+    .then(res => res.rows[0])
+    .catch(err => console.log(err));
 
 };
 
 const editMap = function(db, mapInfo) {
-  // still need to test when db set up
-
-  //let mapValues = [mapInfo.name, mapInfo.latitude, mapInfo.longitude, mapInfo.map_id];
-  // let queryString = `UPDATE maps SET name = $1, latitude = $2, longitude = $3
-  // WHERE map_id = $4;
-  // RETURNING *;`;
-  // return db
-  //   .query(queryString, mapValues)
-  //   .then(res => res.rows[0])
-  //   .catch(err => console.log(err));
-  let dbRes = [
-    {id: 3,
-      name: mapInfo.name,
-      latitude: mapInfo.latitude,
-      longitude: mapInfo.longitude,
-      map_id:mapInfo.map_id
-    }
-  ];
-  return Promise.resolve(dbRes);
-
+  let mapValues = [mapInfo.title,  mapInfo.mapId];
+  let queryString = `UPDATE maps SET title = $1
+  WHERE maps.id = $2 RETURNING *;`;
+  return db
+    .query(queryString, mapValues)
+    .then(res => res.rows[0])
+    .catch(err => console.log(err));
 };
+
+
 // need test function
 const getUserFavouriteMaps = function(db, userId) {
   const values = [userId];
@@ -108,7 +74,7 @@ const getUserFavouriteMaps = function(db, userId) {
 
 
 const addUserFavouriteMap = function(db, favouriteInfo) {
-  let userValues = [favouriteInfo.map_id, favouriteInfo.user_id];
+  let userValues = [favouriteInfo.dataObj.map_id, favouriteInfo.userId];
   let queryString = `INSERT INTO favourites (map_id, user_id)
                     VALUES ($1, $2) RETURNING *`;
   return db.query(queryString, userValues).then(res => res.rows)
@@ -137,8 +103,8 @@ const addPoints = function(db, pointInfo) {
   ];
   //querry need to write when database set up
   // bellow querry need to update later
-  let queryString = `INSERT INTO points (user_id, map_id, title,description,image, latitude, longitude)
-                       VALUES($1, $2, $3, $4, $5, $6) RETURNING *`;
+  let queryString = `INSERT INTO points (user_id, map_id, title, image, description, latitude, longitude)
+     VALUES($1, $2, $3, $4, $5, $6) RETURNING *`;
   return db
     .query(queryString, pointValues)
     .then(res => res.rows[0])
@@ -224,7 +190,7 @@ module.exports = {
   getAllUsers,
   getUserNameById,
   getUserProfileById,
-  getPointsByMapId,
+  getMapByMapId,
   addMap,
   editMap,
   getUserFavouriteMaps,
