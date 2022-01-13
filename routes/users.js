@@ -59,8 +59,15 @@ module.exports = (db) => {
   });
 
   router.post('/:id/favourites', (req, res) => {
+    let userId = req.params.id;
     let dataObj = req.body;
-    userHelper.addUserFavouriteMap(db, dataObj).then((dbRes) => {
+
+    let newObj = {
+      userId: userId,
+      dataObj: dataObj,
+    };
+
+    userHelper.addUserFavouriteMap(db, newObj).then((dbRes) => {
       res.json(dbRes);
     });
   });
