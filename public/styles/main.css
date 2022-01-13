@@ -1,0 +1,60 @@
+#body2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* align-items: center; */
+  min-height: 100vh;
+  background: linear-gradient(
+    90deg,
+    #ff0000 0%,
+    #ff7f00 9.09%,
+    #ffff00 18.18%,
+    #7fff00 27.27%,
+    #00ff00 36.36%,
+    #00ff7f 45.45%,
+    #00ffff 54.55%,
+    #007fff 63.64%,
+    #0000ff 72.73%,
+    #7f00ff 81.82%,
+    #ff00ff 90.91%,
+    #ff007f 100%
+    );
+}
+
+h2 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2em;
+  color: #000000;
+}
+
+#title {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10em;
+  color: #fa5a02;
+  background: #5dcae7;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+#map0 {
+  width: 100%;
+  min-height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#map {
+  width: 90%;
+  min-height: 500px;
+  /* margin-top: 5em; */
+}
+
+#favorites {
+  width: 90%;
+  min-height: 500px;
+  /* margin-top: 5em; */
+  /* margin-bottom: 5em; */
+}
