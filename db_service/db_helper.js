@@ -1,7 +1,7 @@
 //User helper functions
 const getUserNameById = function(db, userInfo) {
-  let userValues = [userInfo.id];
-  let queryString = `SELECT user_name FROM users WHERE id = $1;`;
+  let userValues = [userInfo];
+  let queryString = `SELECT name FROM users WHERE id = $1;`;
   return db
     .query(queryString, userValues)
     .then(res => res.rows[0])
@@ -97,29 +97,30 @@ const editMap = function(db, mapInfo) {
 
 };
 // need test function
-const getUserFavouriteMaps = function(db, userObj) {
-  const values = [userObj.id];
+const getUserFavouriteMaps = function(db, userId) {
+  const values = [userId];
   let queryString = `SELECT * FROM maps
-                       JOIN favourites ON maps.id = favourites.Map_id
-                       JOIN users ON users.id = maps.user_id
-                       WHERE users.id = $1;`;
+                       JOIN favourites ON maps.id = favourites.map_id
+                       WHERE favourites.user_id = $1;`;
   return db.query(queryString, values).then(res => res.rows)
     .catch(err => console.log(err));
 };
 
-//function need test
+
 const addUserFavouriteMap = function(db, favouriteInfo) {
-  let userValues = [favouriteInfo.Map_id, favouriteInfo.User_id];
-  let queryString = `INSERT INTO favourites (Map_id, User_id)
+  let userValues = [favouriteInfo.map_id, favouriteInfo.user_id];
+  let queryString = `INSERT INTO favourites (map_id, user_id)
                     VALUES ($1, $2) RETURNING *`;
   return db.query(queryString, userValues).then(res => res.rows)
     .catch(err => console.log(err));
 };
 
-//function need test
+
 const editUserFavouriteMap = function(db, favouriteInfo) {
-  let userValues = [favouriteInfo.Map_id, favouriteInfo.User_id];
-  let queryString = `UPDATE favourites SET Map_id = $1, User_id = $2 RETURNING *`;
+  let userValues = [favouriteInfo.dataObj.map_id, favouriteInfo.userId,favouriteInfo.favId];
+
+  let queryString = `UPDATE favourites SET map_id = $1, user_id = $2
+  WHERE id = $3 RETURNING *`;
   return db.query(queryString, userValues).then(res => res.rows)
     .catch(err => console.log(err));
 };
