@@ -69,6 +69,18 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/maps", (req, res) => {
+  res.render("maps");
+});
+
+app.get("/points", (req, res) => {
+  res.render("points");
+});
+
+app.get("/users", (req, res) => {
+  res.render("users");
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
