@@ -1,4 +1,4 @@
-insert into  maps (title, private) values ('De-engineered real-time groupware', false);
+insert into  maps (id, title, private) values ("5c1df62c-05df-4c74-baa3-2026a670c4e5",'De-engineered real-time groupware', false);
 insert into  maps (title, private) values ('Phased contextually-based hierarchy', false);
 insert into  maps (title, private) values ('Cloned optimal implementation', true);
 insert into  maps (title, private) values ('Phased optimal benchmark', true);
