@@ -44,7 +44,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(#5dcae7, #d2c19e);
+  background: linear-gradient(#5dcae7, #00acee, #0e76a8, #3b5998);
 }
 
 #map {
