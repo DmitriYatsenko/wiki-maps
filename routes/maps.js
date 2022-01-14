@@ -24,6 +24,18 @@ module.exports = (db) => {
       });
   });
 
+  router.get("/", (req, res) => {
+    mapsHelper.getAllMap(db)
+      .then(dbRes => {
+        res.json({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
   router.patch("/:id", (req, res) => {
     const mapId = req.params.id;
     const title = req.body.title;

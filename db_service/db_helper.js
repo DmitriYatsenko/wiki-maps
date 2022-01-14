@@ -198,6 +198,14 @@ const addFlagByMapId = function(db, pointInfo) {
     .catch(err => console.log(err));
 };
 
+const getAllMap = function(db) {
+
+  let queryString = `SELECT * FROM maps;`;
+  return db.query(queryString).then(res => res.rows)
+    .catch(err => console.log(err));
+};
+
+
 module.exports = {
   getAllUsers,
   getUserNameById,
@@ -214,5 +222,6 @@ module.exports = {
   deletePoint,
   getAllFlag,
   editFlagByMapId,
-  addFlagByMapId
+  addFlagByMapId,
+  getAllMap
 };
