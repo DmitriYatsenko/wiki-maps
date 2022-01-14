@@ -61,7 +61,6 @@ const editMap = function(db, mapInfo) {
 };
 
 
-// need test function
 const getUserFavouriteMaps = function(db, userId) {
   const values = [userId];
   let queryString = `SELECT * FROM maps
@@ -160,26 +159,41 @@ const deletePoint = function(db, pointId) {
   );
 };
 
-// need test function
+
 const getAllFlag = function(db) {
   let queryString = `SELECT * FROM flags`;
   return db.query(queryString).then(res => res.rows)
     .catch(err => console.log(err));
 };
 
-//function need test
+
 const editFlagByMapId = function(db, flagInfo) {
   let flagValues = [
     flagInfo.mapId,
     flagInfo.description
   ];
-  //querry need to write when database set up
-  // bellow querry need to update later
+
   let queryString = `UPDATE flags SET description = $2
   WHERE map_id = $1
   RETURNING *`;
   return db
     .query(queryString, flagValues)
+    .then(res => res.rows[0])
+    .catch(err => console.log(err));
+};
+
+const addFlagByMapId = function(db, pointInfo) {
+  let pointValues = [
+    pointInfo.user_id,
+    pointInfo.mapId,
+    pointInfo.description,
+  ];
+
+  let queryString = `INSERT INTO flags (user_id,map_id, description)
+     VALUES($1,$2,$3)
+     RETURNING *`;
+  return db
+    .query(queryString, pointValues)
     .then(res => res.rows[0])
     .catch(err => console.log(err));
 };
@@ -199,5 +213,6 @@ module.exports = {
   deleteMap,
   deletePoint,
   getAllFlag,
-  editFlagByMapId
+  editFlagByMapId,
+  addFlagByMapId
 };
