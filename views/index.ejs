@@ -39,20 +39,8 @@
     </section>
     <section class="body">
       <container class="maps">
-        <ariticle id="article-map">
-          <span id="map" class="map"></span>
-          <section class="footer-map">
-            <div>
-              <h4>map.title: <%= map.title %></h4>
-            </div>
-            <div>
-              <i class="fas fa-flag"></i>
-              <i class="fas fa-star" alt="favourite"></i>
-              <i class="fas fa-expand-arrows-alt"></i>
-            </div>
-          </section>
-        </ariticle>
-        <%- for (map in maps) { %>
+
+        <%- for (map of debRes) { %>
           <ariticle id="article-map">
             <span id="map" class="map"></span>
             <section class="footer-map">
