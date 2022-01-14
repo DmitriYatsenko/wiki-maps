@@ -10,34 +10,57 @@ const router  = express.Router();
 
 const flagHelper = require('../db_service/db_helper');
 module.exports = (db) => {
-  router.get("/flags", (req, res) => {
+  router.get("/", (req, res) => {
     flagHelper.getAllFlag(db)
       .then(dbRes => {
-        res.json({ dbRes });
+        res.render({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 
-  router.patch("/flags/:mapId", (req, res) => {
+
+  router.post("/:mapId", (req, res) => {
+    const mapId = req.params.mapId;
+    const description = req.body.description;
+    const user_id = req.session.userId;
+    const editFlagInfo = {
+      user_id,
+      mapId,
+      description
+    };
+
+    flagHelper.addFlagByMapId(db, editFlagInfo)
+      .then(dbRes => {
+        res.render({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .render({ error: err.message });
+      });
+  });
+
+
+  router.patch("/:mapId", (req, res) => {
     const mapId = req.params.mapId;
     const description = req.body.description;
     const flagInfo = {
-      mapId:mapId,
-      description:description
+      mapId,
+      description
     };
 
     flagHelper.editFlagByMapId(db, flagInfo)
       .then(dbRes => {
-        res.json({ dbRes });
+        res.render({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 
