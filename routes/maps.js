@@ -16,6 +16,11 @@ module.exports = (db) => {
     mapsHelper.getMapByMapId(db, mapId)
       .then(dbRes => {
         console.log("dbRes", dbRes);
+        console.log("dbRes desctructured", {dbRes});
+        const values = Object.values(dbRes);
+        const keys = Object.keys(dbRes);
+        console.log("dbRes values desctructured7", {values} );
+        console.log("dbRes values desctructured7", {keys} );
         res.render("maps", dbRes );
       })
       .catch(err => {

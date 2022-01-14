@@ -40,12 +40,15 @@
     <section class="body">
       <container class="maps">
 
-        <% for (const {map} of dbRes) { %>
-          <ariticle id="article-map">
+        <ariticle id="article-map">
+          <section class="map-header">
+              <h4>adymick0's Map</h4>
+              <img src='https://robohash.org/inciduntexcepturiillo.png?size=50x50&set=set1'>
+            </section>
             <span id="map" class="map"></span>
             <section class="footer-map">
               <div>
-                <h4>map.title: <%= map.title %></h4>
+                <h4>'Phased contextually-based hierarchy' </h4>
               </div>
               <div>
                 <i class="fas fa-flag"></i>
@@ -54,8 +57,64 @@
               </div>
             </section>
           </ariticle>
-        <% } %>
-      </container>
+          <ariticle id="article-map">
+            <section class="map-header">
+              <h4>emulvenna1's Map</h4>
+              <img src='https://robohash.org/impeditverodolor.png?size=50x50&set=set1'>
+            </section>
+            <span id="map" class="map"></span>
+            <section class="footer-map">
+              <div>
+                <h4> </h4>
+              </div>
+              <div>
+                <i class="fas fa-flag"></i>
+                <i class="fas fa-star" alt="favourite"></i>
+                <i class="fas fa-expand-arrows-alt"></i>
+              </div>
+            </section>
+          </ariticle>
+          <ariticle id="article-map">
+            <section class="map-header">
+              <h4>lfoskin3's Map</h4>
+              <img src='https://robohash.org/quiconsequaturquas.png?size=50x50&set=set1'>
+            </section>
+            <span id="map" class="map"></span>
+            <section class="footer-map">
+              <div>
+                <h4> </h4>
+              </div>
+              <div>
+                <i class="fas fa-flag"></i>
+                <i class="fas fa-star" alt="favourite"></i>
+                <i class="fas fa-expand-arrows-alt"></i>
+              </div>
+            </section>
+          </ariticle>
+          <%if (dbRes !== undefined || null) { %>
+            <p>YEAH!!</p>
+          <!-- <% for (const {map} of dbRes) { %>
+
+            <!-- <ariticle id="article-map">
+              <section class="map-header">
+                <h4><%%>'s Map</h4>
+                <img src='https://robohash.org/quiconsequaturquas.png?size=50x50&set=set1'>
+              </section>
+              <span id="map" class="map"></span>
+              <section class="footer-map">
+                <div>
+                  <h4> </h4>
+                </div>
+                <div>
+                  <i class="fas fa-flag"></i>
+                  <i class="fas fa-star" alt="favourite"></i>
+                  <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+              </section>
+            </ariticle> --> -->
+          <!-- <% } %> -->
+          <% } %>
+        </container>
     </section>
     <section class="footer"></section>
   </main>
