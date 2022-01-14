@@ -23,6 +23,7 @@
   <section class="header"></section>
   <section class="body">
     <container class="points">
+      <% for (const {point} of dbRes) { %>
       <article class="point">
         <div class="card-hard">
           <h5 class="card-title">
@@ -35,23 +36,7 @@
           </p>
         </div>
         <div class="card-footer">
-          <img class="card-img-bottom" src="<%= point.image %>" alt="Card image cap">
-        </div>
-      </article>
-      <%- for (point in points) { %>
-      <article class="point">
-        <div class="card-hard">
-          <h5 class="card-title">
-            <%= point.title %>
-          </h5>
-        </div>
-        <div class="card-body">
-          <p class="card-text">
-            <%= point.description %>
-          </p>
-        </div>
-        <div class="card-footer">
-          <img class="card-img-bottom" src="<%= point.image %>" alt="Card image cap">
+          <img class="card-img-bottom" src=<%= point.image %> alt="Card image cap">
         </div>
       </article>
       <% } %>

@@ -9,7 +9,6 @@ const express = require('express');
 const router  = express.Router();
 
 const mapsHelper = require('../db_service/db_helper');
-// we need a query to find all the maps in the database and have those mpas with the points asigned to them! 
 module.exports = (db) => {
   router.get("/:id", (req, res) => {
     const mapId = req.params.id;
