@@ -15,7 +15,8 @@ module.exports = (db) => {
 
     mapsHelper.getMapByMapId(db, mapId)
       .then(dbRes => {
-        res.render({ dbRes });
+        console.log("dbRes", {dbRes});
+        res.render("maps",{ dbRes });
       })
       .catch(err => {
         res
@@ -27,7 +28,8 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     mapsHelper.getAllMap(db)
       .then(dbRes => {
-        res.json({ dbRes });
+        console.log("dbRes", {dbRes});
+        res.render("index",{ dbRes });
       })
       .catch(err => {
         res
