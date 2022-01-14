@@ -23,52 +23,69 @@ module.exports = (db) => {
       });
   });
 
-
   router.get('/login/:id', (req, res) => {
     // cookie-session middleware
-    req.session.user_id = req.params.id;
+    req.session.userId = req.params.id;
 
     // cookie-parser middleware
-    res.cookie('user_id', req.params.id);
+    res.cookie('userId', req.params.id);
 
     // send the user somewhere
     res.redirect('/');
   });
 
-
-  router.get("/users/:id ", (req, res) => {
-    let userData = req.body;
-    userHelper.getUserNameById(db, userData)
+  router.get("/:id", (req, res) => {
+    let userId = req.params.id;
+    userHelper.getUserNameById(db, userId)
       .then((dbRes) => {
-        res.json(dbRes[0]);
+        res.json(dbRes);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
       });
   });
-  //need test with data base
+
+
   router.get('/:id/favourites', (req, res) => {
-    let userObj = {
-      id: req.session.user_id
-    };
-    userHelper.getUserFavouriteMaps(db, userObj.id).then(dbRes => res.json(dbRes));
+    let userId = req.params.id;
+    userHelper.getUserFavouriteMaps(db, userId).then(dbRes => res.json(dbRes))
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
-  //need test with data base
   router.post('/:id/favourites', (req, res) => {
+    let userId = req.params.id;
     let dataObj = req.body;
-    userHelper.addUserFavouriteMap(db, dataObj).then((dbRes) => {
+
+    let newObj = {
+      userId: userId,
+      dataObj: dataObj,
+    };
+
+    userHelper.addUserFavouriteMap(db, newObj).then((dbRes) => {
       res.json(dbRes);
     });
   });
 
-  //need test with data base
-  router.patch('/:id/favourites', (req, res) => {
+  router.patch('/:id/favourites/:favId', (req, res) => {
+    let userId = req.params.id;
+    let favId = req.params.favId;
     let dataObj = req.body;
-    userHelper.editUserFavouriteMap(db, dataObj).then((dbRes) => {
+    let editObj = {
+      userId: userId,
+      favId: favId,
+      dataObj,
+    };
+    console.log(editObj);
+    userHelper.editUserFavouriteMap(db, editObj).then((dbRes) => {
       res.json(dbRes);
     });
   });
-
-
-
 
   return router;
 };

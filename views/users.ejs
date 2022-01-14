@@ -2,39 +2,49 @@
 <html lang="en">
 
 <head>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <title><%= user.username %></title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <!-- Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+  <title><%= user.username %></title>
 </head>
 
 <body>
-<section class="header"></section>
-<section class="body">
-  <article class=profile>
-    <section class="profile-header">
-      <div class="profile-header-image">
-        <img src="<%= user.image %>" alt="profile image">
-      </div>
-      <div class="profile-header-info">
-        <h1 class="profile-header-name"><%= user.username %></h1>
-      </div>
-    </section>
-    <section class="profile-body">
-      <p><%= user.description %></p>
-    </section>
-    <section class="profile-footer">
-      <div class="profile-footer-points">
-        <!-- not sure what should i put in here -->
-      </div>
-    </div>
-  </div>
-</article>
-  <container class="maps">
+  <section class="header"></section>
+  <section class="body">
+    <article class=profile>
+      <section class="profile-header">
+        <div class="profile-header-image">
+          <img src="<%= user.image %>" alt="profile image">
+        </div>
+        <div class="profile-header-info">
+          <h1 class="profile-header-name"><%= user.username %></h1>
+        </div>
+      </section>
+      <section class="profile-body">
+        <p><%= user.description %></p>
+      </section>
+      <section class="profile-footer">
+        <div class="profile-footer-points">
+          <!-- not sure what should i put in here -->
+        </div>
+        </div>
+        </div>
+    </article>
+    <container class="maps">
 
-  </container>
-  <container class="favourites"></container>
-</section>
-<section class="footer"></section>
+    </container>
+    <container class="favourites"></container>
+  </section>
+  <section class="footer"></section>
 </body>
+
 </html>

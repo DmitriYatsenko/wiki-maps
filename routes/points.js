@@ -9,19 +9,28 @@ const express = require('express');
 const router = express.Router();
 const pointsHelper = require('../db_service/db_helper');
 
+
 module.exports = (db) => {
 
-  router.post("/points/:id", (req, res) => {
-    const mapId = req.params.id;
-    //need to update after database correct
-    const name = req.body.name;
+  router.post("/:mapId", (req, res) => {
+    const user_id = req.session.userId;
+    const map_id = req.params.mapId;
+    const title = req.body.title;
+    const image = req.body.image;
+    const description = req.body.description;
     const latitude = req.body.latitude;
     const longtitude = req.body.longtitude;
+
     const pointInfo = {
-      name:name,
-      latitude:latitude,
-      longtitude:longtitude
+      user_id,
+      map_id,
+      title,
+      image,
+      description,
+      latitude,
+      longtitude
     };
+
     pointsHelper.addPoints(db, pointInfo)
       .then(dbRes => {
         res.json({ dbRes });
@@ -33,24 +42,24 @@ module.exports = (db) => {
       });
   });
 
-  router.patch("/points/:id", (req, res) => {
-    const mapId = req.params.id;
+  router.patch("/:id", (req, res) => {
+    const pointId = req.params.id;
 
-    // still need fix according our database set up
-    const user_id = req.body.user_id;
+    const map_id = req.params.mapId;
     const title = req.body.title;
     const image = req.body.image;
-    const latitude = req.body.latitude;
-    const longitude = req.body.longtitude;
     const description = req.body.description;
+    const latitude = req.body.latitude;
+    const longtitude = req.body.longtitude;
 
     const pointValues = {
-      user_id:user_id,
-      title:title,
-      image:image,
-      latitude:latitude,
-      longitude:longitude,
-      description:description,
+      map_id,
+      title,
+      image,
+      description,
+      latitude,
+      longtitude,
+      pointId
     };
     pointsHelper.editPoints(db, pointValues)
       .then(dbRes => {
@@ -64,7 +73,7 @@ module.exports = (db) => {
   });
 
 
-  router.delete("/points/:id", (req, res) => {
+  router.delete("/:id", (req, res) => {
     const pointId = req.params.id;
     pointsHelper.deletePoint(db, pointId).then(() =>  res.send('Delete Point by id success,bro!!'));
   });
