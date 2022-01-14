@@ -16,6 +16,7 @@ h2 {
 .header {
   font-family: 'Courier New', Courier, monospace;
   font-size: 2em;
+  font-weight: bolder;
   color: #fa5a02;
   background: #5dcae7;
   min-height: 100px;
@@ -31,6 +32,17 @@ h2 {
   justify-content: center;
   align-items: center;
   background: linear-gradient(#5dcae7, #00acee, #0e76a8, #3b5998);
+}
+
+#article-map > .header {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2em;
+  font-weight: bold;
+  color: #000000;
+  background: none;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
 }
 
 .map {
