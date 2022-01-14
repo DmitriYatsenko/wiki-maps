@@ -33,12 +33,12 @@ module.exports = (db) => {
 
     pointsHelper.addPoints(db, pointInfo)
       .then(dbRes => {
-        res.json({ dbRes });
+        res.render("points",{ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 
@@ -63,12 +63,12 @@ module.exports = (db) => {
     };
     pointsHelper.editPoints(db, pointValues)
       .then(dbRes => {
-        res.json({ dbRes });
+        res.render({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 

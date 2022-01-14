@@ -55,7 +55,6 @@ const widgetsRoutes = require("./routes/widgets");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/maps", mapsRoutes(db));
 app.use("/points", pointsRoutes(db));
 app.use("/flags", flagsRoutes(db));
@@ -66,19 +65,7 @@ app.use("/flags", flagsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.get("/maps", (req, res) => {
-  res.render("maps");
-});
-
-app.get("/points", (req, res) => {
-  res.render("points");
-});
-
-app.get("/users", (req, res) => {
-  res.render("users");
+  res.render("index", {});
 });
 
 app.listen(PORT, () => {

@@ -14,12 +14,12 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     userHelper.getAllUsers(db)
       .then(dbRes => {
-        res.json({ dbRes });
+        res.render("users",{ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 
@@ -38,12 +38,12 @@ module.exports = (db) => {
     let userId = req.params.id;
     userHelper.getUserNameById(db, userId)
       .then((dbRes) => {
-        res.json(dbRes);
+        res.render(dbRes);
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 
@@ -54,7 +54,7 @@ module.exports = (db) => {
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 
@@ -68,7 +68,7 @@ module.exports = (db) => {
     };
 
     userHelper.addUserFavouriteMap(db, newObj).then((dbRes) => {
-      res.json(dbRes);
+      res.render(dbRes);
     });
   });
 
@@ -83,7 +83,7 @@ module.exports = (db) => {
     };
     console.log(editObj);
     userHelper.editUserFavouriteMap(db, editObj).then((dbRes) => {
-      res.json(dbRes);
+      res.render(dbRes);
     });
   });
 
