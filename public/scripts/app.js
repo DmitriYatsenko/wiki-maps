@@ -1,5 +1,5 @@
 // Client facing scripts here
-var map = L.map('map').setView([43.7, -79.3], 13);
+let map = L.map('map').setView([43.7, -79.3], 13);
 
 let accessToken = 'pk.eyJ1IjoiZG1pdHJpeWF0c2Vua28iLCJhIjoiY2t5Ync3MWw2MGpqbTMxbWtzM3Zwa2F1MyJ9.PhF68nNuMvNvUcxEMRMNyg';
 
@@ -11,3 +11,4 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     zoomOffset: -1,
     accessToken: accessToken
 }).addTo(map);
+
