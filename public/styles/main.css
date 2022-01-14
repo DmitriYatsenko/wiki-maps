@@ -47,8 +47,8 @@ h2 {
 
 .map {
   width: 90%;
-  min-height: 500px;
-  /* margin-top: 5em; */
+  min-height: 1080px;
+  margin-bottom: 5%;
 }
 
 #favorites {
