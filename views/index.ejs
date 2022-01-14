@@ -11,28 +11,63 @@
   <link rel="stylesheet" href="/public/styles/layout.css" type="text/css" />
   <!-- <link rel="stylesheet" href="/public/styles/header.css" type="text/css" /> -->
   <!-- <link rel="stylesheet" href="/public/styles/nav.css" type="text/css" /> -->
+  <!-- fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,900;1,300&display=swap" rel="stylesheet">
+` <!-- icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Map -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin="" />
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin="" />
+  <!-- external js -->
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
-
+<!-- internal js -->
   <script type="text/javascript" src="/public/vendor/jquery-3.0.0.js"></script>
 </head>
 
 <body>
-  <main class="all">
+  <main class="body">
     <section class="header">
-      <h1 class="header">wiki-maps</h1>
+      <h1 class="header">Wiki Maps</h1>
+      <div class="login-header">
+      <a href="/">Sign In</a>
+      </div>
     </section>
     <section class="body">
-
-      <ariticle id="article-map">
-        <section class="header">best beach spots</section>
-        <span id="map" class="map"></span>
-      </ariticle>
+      <container class="maps">
+        <ariticle id="article-map">
+          <span id="map" class="map"></span>
+          <section class="footer-map">
+            <div>
+              <h4>map.title: <%= map.title %></h4>
+            </div>
+            <div>
+              <i class="fas fa-flag"></i>
+              <i class="fas fa-star" alt="favourite"></i>
+              <i class="fas fa-expand-arrows-alt"></i>
+            </div>
+          </section>
+        </ariticle>
+        <%- for (map in maps) { %>
+          <ariticle id="article-map">
+            <span id="map" class="map"></span>
+            <section class="footer-map">
+              <div>
+                <h4>map.title: <%= map.title %></h4>
+              </div>
+              <div>
+                <i class="fas fa-flag"></i>
+                <i class="fas fa-star" alt="favourite"></i>
+                <i class="fas fa-expand-arrows-alt"></i>
+              </div>
+            </section>
+          </ariticle>
+        <% } %>
+      </container>
     </section>
     <section class="footer"></section>
   </main>

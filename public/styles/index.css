@@ -1,0 +1,30 @@
+
+
+main.body {
+  display: flex;
+  flex-flow: column;
+  /* align-items: center; */
+  background-color: #839496;
+}
+section.header {
+  display: flex;
+  flex-flow: column;
+  border-bottom: 1px solid #657b83;
+  font-family: Prompt, sans-serif;
+  height: 10%;
+  width: 100%;
+}
+section>h1.header {
+  font-weight: 900;
+}
+
+#article-map {
+  display: flex;
+  flex-flow: column;
+  background-color:  #586E75;
+  margin: 5em;
+  border: 0.2em solid #657b83;
+  font-family: Prompt, sans-serif;
+  font-weight: 300;
+}
+
