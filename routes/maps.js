@@ -15,8 +15,8 @@ module.exports = (db) => {
 
     mapsHelper.getMapByMapId(db, mapId)
       .then(dbRes => {
-        console.log("dbRes", {dbRes});
-        res.render("maps",{ dbRes });
+        console.log("dbRes", dbRes);
+        res.render("maps", dbRes );
       })
       .catch(err => {
         res
