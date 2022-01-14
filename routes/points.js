@@ -19,7 +19,7 @@ module.exports = (db) => {
     const image = req.body.image;
     const description = req.body.description;
     const latitude = req.body.latitude;
-    const longtitude = req.body.longtitude;
+    const longitude = req.body.longitude;
 
     const pointInfo = {
       user_id,
@@ -28,17 +28,17 @@ module.exports = (db) => {
       image,
       description,
       latitude,
-      longtitude
+      longitude
     };
 
     pointsHelper.addPoints(db, pointInfo)
       .then(dbRes => {
-        res.render({ dbRes });
+        res.json({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .render({ error: err.message });
+          .json({ error: err.message });
       });
   });
 
