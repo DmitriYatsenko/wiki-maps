@@ -4,7 +4,7 @@
   flex-direction: column;
   /* align-items: center; */
   min-height: 100vh;
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     #ff0000 0%,
     #ff7f00 9.09%,
@@ -18,7 +18,7 @@
     #7f00ff 81.82%,
     #ff00ff 90.91%,
     #ff007f 100%
-    );
+    ); */
 }
 
 h2 {
@@ -44,6 +44,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(#5dcae7, #d2c19e);
 }
 
 #map {
