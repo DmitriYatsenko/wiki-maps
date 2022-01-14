@@ -8,7 +8,6 @@ const getUserNameById = function(db, userInfo) {
     .catch(console.error("Error running query to get user name by id from database"));
 };
 
-
 const getUserProfileById = function(db, userInfo) {
   let userValues = [userInfo.id];
   let queryString = `SELECT user_name, favorite_map, number_of_maps_created FROM users WHERE id = $1;`;
@@ -91,20 +90,20 @@ const editUserFavouriteMap = function(db, favouriteInfo) {
     .catch(err => console.log(err));
 };
 
-//function need test
+
 const addPoints = function(db, pointInfo) {
   let pointValues = [
     pointInfo.user_id,
+    pointInfo.map_id,
     pointInfo.title,
+    pointInfo.description,
     pointInfo.image,
     pointInfo.latitude,
-    pointInfo.longitude,
-    pointInfo.description,
+    pointInfo.longitude
   ];
-  //querry need to write when database set up
-  // bellow querry need to update later
-  let queryString = `INSERT INTO points (user_id, map_id, title, image, description, latitude, longitude)
-     VALUES($1, $2, $3, $4, $5, $6) RETURNING *`;
+
+  let queryString = `INSERT INTO points (user_id, map_id, title, description, image, latitude, longitude)
+     VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
   return db
     .query(queryString, pointValues)
     .then(res => res.rows[0])
@@ -112,20 +111,21 @@ const addPoints = function(db, pointInfo) {
 };
 
 
-//function need test
 const editPoints = function(db, pointInfo) {
   let pointValues = [
-    pointInfo.user_id,
+
+    pointInfo.map_id,
     pointInfo.title,
+    pointInfo.description,
     pointInfo.image,
     pointInfo.latitude,
     pointInfo.longitude,
-    pointInfo.description,
+    pointInfo.pointId
   ];
-  //querry need to write when database set up
-  // bellow querry need to update later
-  let queryString = `UPDATE points SET user_id = $1, map_id = $2, title = $3, description = $4, image = $5, latitude = $6 ,longitude = $7
-                       VALUES($1, $2, $3, $4, $5, $6) RETURNING *`;
+
+
+  let queryString = `UPDATE points SET map_id = $1, title = $2, description = $3, image = $4, latitude = $5 ,longitude = $6
+                       WHERE points.id = $7 RETURNING *`;
   return db
     .query(queryString, pointValues)
     .then(res => res.rows[0])
@@ -148,7 +148,7 @@ const deleteMap = function(db, mapId) {
 
 const deletePoint = function(db, pointId) {
   let pointValues = [pointId];
-  let queryString = `DELETE FROM maps
+  let queryString = `DELETE FROM points
     WHERE id = $1`;
   return (
     db
@@ -183,8 +183,6 @@ const editFlagByMapId = function(db, flagInfo) {
     .then(res => res.rows[0])
     .catch(err => console.log(err));
 };
-
-
 
 module.exports = {
   getAllUsers,
