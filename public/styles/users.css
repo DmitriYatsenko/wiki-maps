@@ -1,0 +1,7 @@
+#profile {
+  display: flex;
+  flex-flow: column;
+  background-color:  #586E75;
+  font-family: Prompt, sans-serif;
+  font-weight: 300;
+}

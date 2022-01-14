@@ -37,6 +37,23 @@
     </section>
     <section class="body">
       <container class="flags">
+        ariticle id="article-map">
+            <span id="flag" class="flag"></span>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.
+
+              Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.
+
+              Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.</p>
+            <section class="footer-flag">
+              <div>
+                <h4> user: b332226b-b995-487f-8105-7eaa7ebb7869</h4>
+              </div>
+              <div>
+                <i class="fas fa-trash-alt"></i>
+              </div>
+            </section>
+          </ariticle>
+        <%if (dbRes !== undefined || null) { %>
         <% for (const {flag} of debRes) { %>
           <ariticle id="article-map">
             <span id="flag" class="flag"></span>
@@ -50,6 +67,7 @@
               </div>
             </section>
           </ariticle>
+        <% } %>
         <% } %>
       </container>
     </section>

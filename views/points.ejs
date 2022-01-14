@@ -23,8 +23,25 @@
   <section class="header"></section>
   <section class="body">
     <container class="points">
+      <article id="point">
+        <div class="card-hard">
+          <h5 class="card-title">
+            Reduced impactful focus group
+          </h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.
+          </p>
+        </div>
+        <div class="card-footer">
+
+          <img class="card-img-bottom" src='http://dummyimage.com/121x100.png/5fa2dd/ffffff' alt="Card image cap">
+        </div>
+      </article>
+      <%if  (dbRes !== 'undefined' || null) {%>
       <% for (const {point} of dbRes) { %>
-      <article class="point">
+      <article id="point">
         <div class="card-hard">
           <h5 class="card-title">
             <%= point.title %>
@@ -36,9 +53,10 @@
           </p>
         </div>
         <div class="card-footer">
-          <img class="card-img-bottom" src=<%= point.image %> alt="Card image cap">
+          <img class="card-img-bottom" src="<%= point.image %>" alt="Card image cap">
         </div>
       </article>
+      <% } %>
       <% } %>
     </container>
   </section>

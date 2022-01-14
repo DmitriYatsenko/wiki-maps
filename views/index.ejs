@@ -92,13 +92,14 @@
             </section>
           </ariticle>
           <%if (dbRes !== undefined || null) { %>
-            <p>YEAH!!</p>
-          <!-- <% for (const {map} of dbRes) { %>
+          <% for (const map of dbRes) { %>
 
-            <!-- <ariticle id="article-map">
+            <ariticle id="article-map">
               <section class="map-header">
-                <h4><%%>'s Map</h4>
-                <img src='https://robohash.org/quiconsequaturquas.png?size=50x50&set=set1'>
+                <% if (map.user_id !== undefined || null) { %>
+                <h4><%map.user_id%>'s Map</h4>
+                <% } %>
+                <img src='<%= user.user_id.image %>'>
               </section>
               <span id="map" class="map"></span>
               <section class="footer-map">
@@ -111,8 +112,8 @@
                   <i class="fas fa-expand-arrows-alt"></i>
                 </div>
               </section>
-            </ariticle> --> -->
-          <!-- <% } %> -->
+            </ariticle>
+           <% } %>
           <% } %>
         </container>
     </section>

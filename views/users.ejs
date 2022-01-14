@@ -14,19 +14,24 @@
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
 
-  <title><%= user.username %></title>
+  <title>Wiki-Maps</title>
 </head>
 
 <body>
-  <section class="header"></section>
+  <main class="body">
+    <section class="header">
+      <h1 class="header">Wiki Maps</h1>
+    </section>
+    <section class="body">
   <section class="body">
-    <article class=profile>
+    <%if  (dbRes !== 'undefined' || null) {%>
+    <article id=profile>
       <section class="profile-header">
         <div class="profile-header-image">
           <img src="<%= user.image %>" alt="profile image">
         </div>
         <div class="profile-header-info">
-          <h1 class="profile-header-name"><%= user.username %></h1>
+          <h1 class="profile-header-name"><%= user.name %></h1>
         </div>
       </section>
       <section class="profile-body">
@@ -34,17 +39,69 @@
       </section>
       <section class="profile-footer">
         <div class="profile-footer-points">
-          
-        </div>
-        </div>
         </div>
     </article>
-    <container class="maps">
+    <% } %> <% else { %>
+      <article id=profile>
+        <section class="profile-header">
+          <div class="profile-header-image">
+            <img src="https://robohash.org/inciduntexcepturiillo.png?size=50x50&set=set1" alt="profile image">
+          </div>
+          <div class="profile-header-info">
+            <h1 class="profile-header-name">adymick0</h1>
+          </div>
+        </section>
+        <section class="profile-body">
+          <p>Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.
 
+            Phasellus in felis. Donec semper sapien a libero. Nam dui.</p>
+        </section>
+        <section class="profile-footer">
+          <div class="profile-footer-points">
+          </div>
+      </article>
+       <% } %>
+    <container class="maps">
+      <ariticle id="article-map">
+        <span id="map" class="map"></span>
+        <section class="footer-map">
+          <div>
+            <h4>Grass-roots heuristic encoding</h4>
+          </div>
+          <div>
+            <i class="fas fa-flag"></i>
+            <i class="fas fa-star" alt="favourite"></i>
+            <i class="fas fa-expand-arrows-alt"></i>
+          </div>
+        </section>
+      </ariticle>
+      <%if (dbRes !== undefined || null) { %>
+      <% for (const {map} of dbRes) { %>
+
+        <ariticle id="article-map">
+          <section class="map-header">
+            <h4><%%>'s Map</h4>
+            <img src='https://robohash.org/quiconsequaturquas.png?size=50x50&set=set1'>
+          </section>
+          <span id="map" class="map"></span>
+          <section class="footer-map">
+            <div>
+              <h4> </h4>
+            </div>
+            <div>
+              <i class="fas fa-flag"></i>
+              <i class="fas fa-star" alt="favourite"></i>
+              <i class="fas fa-expand-arrows-alt"></i>
+            </div>
+          </section>
+        </ariticle>
+       <% } %>
+      <% } %>
     </container>
     <container class="favourites"></container>
   </section>
   <section class="footer"></section>
+</main>
 </body>
 
 </html>

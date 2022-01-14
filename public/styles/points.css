@@ -1,0 +1,9 @@
+#points {
+  display: flex;
+  flex-flow: column;
+  background-color:  #586E75;
+  margin: 5em;
+  border: 0.2em solid #657b83;
+  font-family: Prompt, sans-serif;
+  font-weight: 300;
+}
