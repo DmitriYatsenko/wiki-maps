@@ -13,12 +13,12 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     flagHelper.getAllFlag(db)
       .then(dbRes => {
-        res.json({ dbRes });
+        res.render({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 
@@ -35,12 +35,12 @@ module.exports = (db) => {
 
     flagHelper.addFlagByMapId(db, editFlagInfo)
       .then(dbRes => {
-        res.json({ dbRes });
+        res.render({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 
@@ -55,12 +55,12 @@ module.exports = (db) => {
 
     flagHelper.editFlagByMapId(db, flagInfo)
       .then(dbRes => {
-        res.json({ dbRes });
+        res.render({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 

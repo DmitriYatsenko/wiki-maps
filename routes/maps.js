@@ -15,12 +15,12 @@ module.exports = (db) => {
 
     mapsHelper.getMapByMapId(db, mapId)
       .then(dbRes => {
-        res.json({ dbRes });
+        res.render({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 
@@ -34,12 +34,12 @@ module.exports = (db) => {
 
     mapsHelper.editMap(db, mapInfo)
       .then(dbRes => {
-        res.json({ dbRes });
+        res.render({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 
@@ -53,12 +53,12 @@ module.exports = (db) => {
     };
     mapsHelper.addMap(db, mapInfo)
       .then(dbRes => {
-        res.json({ dbRes });
+        res.render({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .json({ error: err.message });
+          .render({ error: err.message });
       });
   });
 
